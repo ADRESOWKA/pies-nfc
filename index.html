@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Twój pies - TikTok Style</title>
+    <title>Informacje o psie - TikTok Style</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
@@ -54,7 +54,147 @@
             color: #ccc;
             margin-bottom: 18px;
         }
+        .dog-details-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+        .dog-details-table td {
+            padding: 3px 0;
+            vertical-align: top;
+        }
+        .dog-details-table td:first-child {
+            color: #ff2d55;
+            font-weight: bold;
+            width: 120px;
+        }
         .actions {
             display: flex;
             align-items: center;
-            gap: 
+            gap: 18px;
+            margin-bottom: 10px;
+        }
+        .like-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            font-size: 2em;
+            color: #fff;
+            transition: color 0.2s;
+        }
+        .like-btn.liked {
+            color: #ff2d55;
+        }
+        .section-title {
+            color: #ff2d55;
+            font-size: 1.1em;
+            margin: 18px 0 6px 0;
+            font-weight: bold;
+        }
+        .extra-info {
+            font-size: 0.98em;
+            margin-bottom: 10px;
+        }
+        .comments {
+            margin-top: 10px;
+            max-height: 80px;
+            overflow-y: auto;
+            font-size: 0.98em;
+        }
+        .comment {
+            margin-bottom: 6px;
+            border-left: 2px solid #ff2d55;
+            padding-left: 8px;
+        }
+        @media (max-width: 500px) {
+            .dog-photo, .info-panel {
+                max-width: 100vw;
+            }
+            .info-panel {
+                padding: 20px 8px 12px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="tiktok-container">
+        <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=400&q=80" alt="Zdjęcie psa" class="dog-photo">
+        <div class="info-panel">
+            <div class="dog-name">@Max</div>
+            <div class="dog-desc">Golden Retriever • 4 lata • Przyjazny, energiczny, lubi dzieci i inne zwierzęta!</div>
+            <table class="dog-details-table">
+                <tr>
+                    <td>Imię:</td>
+                    <td>Max</td>
+                </tr>
+                <tr>
+                    <td>Rasa:</td>
+                    <td>Golden Retriever</td>
+                </tr>
+                <tr>
+                    <td>Wiek:</td>
+                    <td>4 lata</td>
+                </tr>
+                <tr>
+                    <td>Płeć:</td>
+                    <td>Samiec</td>
+                </tr>
+                <tr>
+                    <td>Waga:</td>
+                    <td>32 kg</td>
+                </tr>
+                <tr>
+                    <td>Kolor sierści:</td>
+                    <td>Złoty</td>
+                </tr>
+                <tr>
+                    <td>Numer chipu:</td>
+                    <td>1234567890</td>
+                </tr>
+                <tr>
+                    <td>Szczepienia:</td>
+                    <td>Tak, aktualne</td>
+                </tr>
+                <tr>
+                    <td>Ulubione jedzenie:</td>
+                    <td>Kurczak, marchewka, karma sucha</td>
+                </tr>
+                <tr>
+                    <td>Opiekun:</td>
+                    <td>Anna Nowak, tel. 123-456-789</td>
+                </tr>
+            </table>
+            <div class="section-title">Dodatkowe informacje</div>
+            <ul class="extra-info">
+                <li>Lubi długie spacery i zabawę piłką.</li>
+                <li>Nie lubi burzy i głośnych dźwięków.</li>
+                <li>Potrafi wykonywać podstawowe komendy: siad, leżeć, zostań.</li>
+            </ul>
+            <div class="actions">
+                <button class="like-btn" id="likeBtn" title="Lubię to!">♡</button>
+                <span id="likeCount">128</span>
+            </div>
+            <div class="section-title">Komentarze</div>
+            <div class="comments">
+                <div class="comment"><b>Ola:</b> Jaki słodziak! 🐶</div>
+                <div class="comment"><b>Bartek:</b> Super pies, pozdrawiam!</div>
+                <div class="comment"><b>Kasia:</b> Uwielbiam Golden Retrievery!</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Prosty efekt "lubię to"
+        const likeBtn = document.getElementById('likeBtn');
+        const likeCount = document.getElementById('likeCount');
+        let liked = false;
+        likeBtn.addEventListener('click', function() {
+            liked = !liked;
+            likeBtn.classList.toggle('liked', liked);
+            likeBtn.textContent = liked ? '❤️' : '♡';
+            let count = parseInt(likeCount.textContent, 10);
+            likeCount.textContent = liked ? count + 1 : count - 1;
+        });
+    </script>
+</body>
+</html>
