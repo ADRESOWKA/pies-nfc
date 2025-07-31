@@ -20,6 +20,9 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
+            /* Wzór łapek w tle */
+            background-image: url('data:image/svg+xml;utf8,<svg width="60" height="60" xmlns="http://www.w3.org/2000/svg"><text x="0" y="50" font-size="48" fill="rgba(255,255,255,0.07)">🐾</text></svg>');
+            background-repeat: repeat;
         }
         .container {
             max-width: 420px;
@@ -29,6 +32,7 @@
             box-shadow: 0 4px 24px rgba(0,0,0,0.18);
             padding: 0 0 24px 0;
             overflow: hidden;
+            position: relative;
         }
         .dog-photo {
             width: 100%;
@@ -46,6 +50,22 @@
             margin-bottom: 8px;
             letter-spacing: 1px;
             color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .heart-anim {
+            font-size: 1.2em;
+            color: #ff4e50;
+            animation: heartBeat 1.2s infinite;
+            display: inline-block;
+        }
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1);}
+            10%, 30% { transform: scale(1.2);}
+            20%, 40% { transform: scale(0.95);}
+            50% { transform: scale(1.1);}
+            60%, 90% { transform: scale(1);}
         }
         .info-list {
             list-style: none;
@@ -107,6 +127,63 @@
             font-size: 1.4em;
             margin-right: 8px;
         }
+        .share-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(90deg, #f9d423 0%, #ff4e50 100%);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 12px 20px;
+            font-size: 1.08em;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 18px auto 0 auto;
+            box-shadow: 0 2px 8px rgba(255,78,80,0.10);
+            transition: background 0.2s, transform 0.2s;
+            outline: none;
+            width: 90%;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+        .share-btn:active {
+            transform: scale(0.97);
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255,78,80,0.18);}
+            70% { box-shadow: 0 0 0 10px rgba(255,78,80,0);}
+            100% { box-shadow: 0 0 0 0 rgba(255,78,80,0);}
+        }
+        .map-section {
+            margin: 24px 0 0 0;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+        }
+        .map-title {
+            color: var(--accent);
+            font-size: 1.08em;
+            margin-bottom: 8px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            padding-left: 2px;
+        }
+        .paw-anim {
+            position: absolute;
+            font-size: 2.2em;
+            opacity: 0.13;
+            pointer-events: none;
+            animation: pawMove 6s linear infinite;
+        }
+        .paw-anim.paw1 { top: 30px; left: 20px; animation-delay: 0s;}
+        .paw-anim.paw2 { top: 120px; right: 30px; animation-delay: 2s;}
+        .paw-anim.paw3 { bottom: 60px; left: 40px; animation-delay: 4s;}
+        @keyframes pawMove {
+            0% { transform: translateY(0) scale(1);}
+            50% { transform: translateY(20px) scale(1.1);}
+            100% { transform: translateY(0) scale(1);}
+        }
         @media (max-width: 600px) {
             .container {
                 margin: 0;
@@ -120,14 +197,24 @@
             .dog-photo {
                 height: 180px;
             }
+            .map-section {
+                margin: 18px 0 0 0;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Animowane łapki -->
+        <span class="paw-anim paw1">🐾</span>
+        <span class="paw-anim paw2">🐾</span>
+        <span class="paw-anim paw3">🐾</span>
         <img src="https://i.imgur.com/B0cYF6X.jpeg" alt="Brownie - zdjęcie psa" class="dog-photo">
         <div class="info-section">
-            <div class="dog-name">Brownie</div>
+            <div class="dog-name">
+                Brownie
+                <span class="heart-anim">❤️</span>
+            </div>
             <ul class="info-list">
                 <li><span class="info-label">🐶 Rasa:</span> <span class="info-value">Labrador</span></li>
                 <li><span class="info-label">🎂 Wiek:</span> <span class="info-value">2 lata</span></li>
@@ -154,7 +241,39 @@
                     <a class="owner-phone" href="tel:724061687">724 061 687</a>
                 </div>
             </div>
+            <button class="share-btn" id="shareBtn">🔗 Udostępnij stronę</button>
+            <div class="map-section">
+                <div class="map-title">📍 Lokalizacja: Środa Wielkopolska, ul. Nagietkowa 10/11</div>
+                <iframe
+                    src="https://www.google.com/maps?q=Środa+Wielkopolska,+Nagietkowa+10/11&output=embed"
+                    width="100%" height="220" style="border:0; display:block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
         </div>
     </div>
+    <script>
+        // Przycisk udostępniania
+        document.getElementById('shareBtn').addEventListener('click', async function() {
+            const shareData = {
+                title: 'Brownie - Informacje o psie',
+                text: 'Zobacz stronę psa Brownie!',
+                url: window.location.href
+            };
+            if (navigator.share) {
+                try {
+                    await navigator.share(shareData);
+                } catch (err) {
+                    // użytkownik anulował
+                }
+            } else {
+                // fallback: kopiuj link do schowka
+                try {
+                    await navigator.clipboard.writeText(window.location.href);
+                    alert('Link do strony został skopiowany do schowka!');
+                } catch (err) {
+                    prompt('Skopiuj link do strony:', window.location.href);
+                }
+            }
+        });
+    </script>
 </body>
 </html>
