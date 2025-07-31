@@ -2,90 +2,59 @@
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
-    <title>Informacje o psie</title>
+    <title>Twój pies - TikTok Style</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
             margin: 0;
-            padding: 0;
+            background: #000;
+            color: #fff;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            min-height: 100vh;
         }
-        .container {
-            background: #fff;
-            max-width: 600px;
-            margin: 40px auto;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-        }
-        .info {
-            margin: 20px 0;
-        }
-        .info label {
-            font-weight: bold;
+        .tiktok-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
         }
         .dog-photo {
-            display: block;
-            margin: 0 auto 20px auto;
-            max-width: 300px;
-            border-radius: 10px;
-        }
-        .section-title {
-            color: #555;
+            width: 100vw;
+            max-width: 400px;
+            height: 70vh;
+            object-fit: cover;
+            border-radius: 20px;
             margin-top: 30px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 5px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.5);
         }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Informacje o psie</h1>
-        <img src="https://i.imgur.com/B0cYF6X.jpeg" alt="Zdjęcie psa" class="dog-photo">
-
-        <div class="info">
-            <label>Imię:</label> Brownie
-        </div>
-        <div class="info">
-            <label>Rasa:</label> Labrador
-        </div>
-        <div class="info">
-            <label>Wiek:</label> 2 lata
-        </div>
-        <div class="info">
-            <label>Płeć:</label> Samiec
-        </div>
-        <div class="info">
-            <label>Waga:</label> 40 kg
-        </div>
-        <div class="info">
-            <label>Kolor sierści:</label> Brązowy
-        </div>
-        <div class="info">
-            <label>Numer chipu:</label> PÓZNIEJDODAM
-        </div>
-        <div class="info">
-            <label>Szczepienia:</label> Tak, aktualne
-        </div>
-        <div class="info">
-            <label>Ulubione jedzenie:</label> Kurczak, marchewka, karma sucha
-        </div>
-        <div class="info">
-            <label>Charakter:</label> Przyjazny, energiczny lubi inne zwierzęta
-        </div>
-        <div class="info">
-            <label>Opiekun:</label> Anna Nowak, tel. 724061687
-        </div>
-
-        <h2 class="section-title">Dodatkowe informacje</h2>
-        <ul>
-            <li>Lubi długie spacery i zabawę piłką.</li>
-            <li>Potrafi wykonywać podstawowe komendy: siad, leżeć, zostań.</li>
-        </ul>
-    </div>
-</body>
-</html>
+        .info-panel {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100vw;
+            max-width: 400px;
+            background: linear-gradient(0deg, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0.2) 100%);
+            padding: 30px 20px 20px 20px;
+            box-sizing: border-box;
+        }
+        .dog-name {
+            font-size: 2.2em;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .dog-desc {
+            font-size: 1.1em;
+            margin-bottom: 12px;
+        }
+        .dog-details {
+            font-size: 0.98em;
+            color: #ccc;
+            margin-bottom: 18px;
+        }
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 
