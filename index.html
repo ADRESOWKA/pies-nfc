@@ -85,13 +85,27 @@
             color: var(--text-main);
             border-radius: 12px;
             padding: 12px 16px;
-            margin-top: 18px;
+            margin-top: 12px;
             font-size: 1.05em;
             box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
-        .owner-box a {
+        .owner-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .owner-phone {
             color: #8d99ae;
             text-decoration: none;
+            font-size: 0.98em;
+            margin-left: 2px;
+        }
+        .owner-icon {
+            font-size: 1.4em;
+            margin-right: 8px;
         }
         @media (max-width: 600px) {
             .container {
@@ -125,10 +139,20 @@
                 <li><span class="info-label">🍖 Ulubione jedzenie:</span> <span class="info-value">Każde</span></li>
                 <li><span class="info-label">🧘 Charakter:</span> <span class="info-value">Spokojny, ale zdystansowany</span></li>
             </ul>
-            <div class="section-title">👤 Opiekun</div>
+            <div class="section-title">👤 Opiekunowie</div>
             <div class="owner-box">
-                Marta Walczak<br>
-                tel. <a href="tel:782407490">782 407 490</a>
+                <span class="owner-icon">📞</span>
+                <div class="owner-info">
+                    <span>Marta Walczak</span>
+                    <a class="owner-phone" href="tel:782407490">782 407 490</a>
+                </div>
+            </div>
+            <div class="owner-box">
+                <span class="owner-icon">📞</span>
+                <div class="owner-info">
+                    <span>Tomasz Wieliński</span>
+                    <a class="owner-phone" href="tel:724061687">724 061 687</a>
+                </div>
             </div>
         </div>
     </div>
